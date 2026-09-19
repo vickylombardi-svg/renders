@@ -4,16 +4,22 @@ Galería web de los 86 renders del anteproyecto de la **Fundación Tassaroli**
 (anteproyecto: Estudio Lucchesi), ordenados por espacio. Sitio estático: no
 tiene build ni dependencias.
 
-## Deploy en Vercel
+## Deploy
 
-1. En Vercel: **Add New → Project** e importá este repositorio.
-2. Framework Preset: **Other**.
-3. Build Command: vacío · Output Directory: `.` (la raíz).
-4. Deploy.
+Sitio estático: sin build, sin dependencias. Publicar la raíz del repo.
 
-`vercel.json` ya manda `X-Robots-Tag: noindex, nofollow` en todas las rutas y
-cachea `/assets/*` por un año. Junto con `robots.txt`, la galería no se indexa:
-entra quien tiene el link o el QR.
+**Netlify** (donde está hoy): `netlify.toml` fija `publish = "."` y los
+headers. Dos ajustes que NO viven en el repo y se tocan en el panel:
+
+- *Site configuration → Access & security → Visitor access*: tiene que estar
+  en **Public**. Si queda protegido, Netlify devuelve 401 y manda a
+  `app.netlify.com/edge-access`: el visitante necesitaría cuenta de Netlify.
+- *Site configuration → Site details → Change site name*: define el subdominio,
+  que es lo que queda impreso en el QR. Cambiarlo después rompe los QR ya
+  impresos.
+
+**Vercel**: `vercel.json` cubre el mismo caso (Framework Preset `Other`,
+Output Directory `.`). Los dos archivos pueden convivir.
 
 ## Estructura
 
